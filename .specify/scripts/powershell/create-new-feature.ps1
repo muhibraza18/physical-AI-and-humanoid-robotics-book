@@ -7,7 +7,7 @@ param(
     [int]$Number = 0,
     [switch]$Help,
     [Parameter(ValueFromRemainingArguments = $true)]
-    [string[]]$FeatureDescription
+    [string]$FeatureDescription
 )
 $ErrorActionPreference = 'Stop'
 

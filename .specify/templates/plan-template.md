@@ -31,7 +31,11 @@
 
 *GATE: Must pass before Phase 0 research. Re-check after Phase 1 design.*
 
-[Gates determined based on constitution file]
+- **Safety First**: Does the design prioritize safety for humans and the environment?
+- **Modular Design**: Is the system designed with independent, interchangeable modules?
+- **Test-Driven Development**: Are tests written before implementation?
+- **Clear and Concise Code**: Is the code easy to read and understand?
+- **Document Everything**: Are all design decisions, APIs, and processes documented?
 
 ## Project Structure
 

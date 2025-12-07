@@ -1,0 +1,16 @@
+# npm Ignore for Physical AI & Humanoid Robotics Book Project
+
+# Node.js
+node_modules/
+dist/
+build/
+*.log
+.env*
+coverage/
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# Docusaurus specific (if any content should be excluded from npm publish)
+.docusaurus/
+.cache/

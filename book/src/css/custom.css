@@ -1,0 +1,304 @@
+/**
+ * Any CSS included here will be global. The classic template
+ * bundles Infima by default. Infima is a CSS framework designed to
+ * work well for content-centric websites.
+ */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&display=swap');
+
+
+/* Custom CSS Variables for modern theme - Dark Blue Tech */
+:root {
+  /* Colors */
+  --ifm-color-primary-background: #0a192f; /* Dark Navy */
+  --ifm-color-secondary-background: #112240;
+  --ifm-color-accent-cyan: #00d9ff;
+  --ifm-text-color-white: #e6f1ff; /* Text White */
+  --ifm-text-color-gray: #8892b0; /* Text Gray */
+  --ifm-color-primary: #00d9ff; /* Default primary for docusaurus components */
+
+  /* Text Colors */
+  --ifm-text-color: var(--ifm-text-color-white);
+  --ifm-link-color: var(--ifm-color-accent-cyan);
+
+  /* Code Blocks */
+  --ifm-code-font-size: 95%;
+  --docusaurus-highlighted-code-line-bg: rgba(255, 255, 255, 0.1);
+
+  /* Custom shadows for glowing effects */
+  --ifm-shadow-glow-cyan: 0 0 15px rgba(0, 217, 255, 0.6), 0 0 5px rgba(0, 217, 255, 0.3);
+  --ifm-shadow-glass: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+
+  /* Transitions */
+  --ifm-transition-ease: all 0.3s ease-in-out;
+}
+
+/* Base Styles */
+html {
+  background-color: var(--ifm-color-primary-background);
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+  color: var(--ifm-text-color-gray);
+  background-color: var(--ifm-color-primary-background);
+  transition: background-color var(--ifm-transition-ease), color var(--ifm-transition-ease);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Space Grotesk', 'Inter', sans-serif;
+  color: var(--ifm-text-color-white);
+  transition: color var(--ifm-transition-ease);
+}
+
+/* Navbar */
+.navbar {
+  background-color: rgba(17, 34, 64, 0.7); /* Secondary bg with transparency */
+  backdrop-filter: blur(10px);
+  box-shadow: var(--ifm-shadow-glass);
+  border-bottom: 1px solid rgba(0, 217, 255, 0.1); /* Subtle cyan border */
+  transition: var(--ifm-transition-ease);
+}
+
+.navbar__brand, .navbar__title {
+  color: var(--ifm-text-color-white);
+}
+
+.navbar__item.navbar__link {
+  color: var(--ifm-text-color-gray);
+  transition: var(--ifm-transition-ease);
+}
+
+.navbar__item.navbar__link:hover {
+  color: var(--ifm-color-accent-cyan);
+}
+
+/* Hero Section */
+.hero--dark {
+  background: linear-gradient(180deg, var(--ifm-color-primary-background) 0%, var(--ifm-color-secondary-background) 100%);
+  padding: 8rem 0 6rem 0; /* More prominent padding */
+  color: var(--ifm-text-color-white);
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+}
+
+.hero-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+}
+
+@media (min-width: 996px) {
+  .hero-container {
+    flex-direction: row;
+    text-align: left;
+    justify-content: center;
+  }
+}
+
+.hero-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center content in column layout */
+}
+
+@media (min-width: 996px) {
+  .hero-content {
+    align-items: flex-start; /* Align to start in row layout */
+  }
+}
+
+.hero-title {
+  font-size: 3.5rem;
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 1rem;
+  text-shadow: 0 4px 15px rgba(0,0,0,0.4);
+}
+
+.hero-title .text-white {
+  color: var(--ifm-text-color-white);
+}
+
+.hero-title .text-gradient {
+  background: linear-gradient(90deg, #00d9ff 0%, #00a8cc 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.hero-subtitle {
+  font-size: 1.2rem;
+  font-weight: 400;
+  max-width: 700px;
+  margin: 0 auto 2rem auto;
+  color: var(--ifm-text-color-gray);
+  line-height: 1.5;
+}
+
+@media (min-width: 996px) {
+  .hero-subtitle {
+    margin: 0 0 2rem 0;
+  }
+}
+
+
+/* Beta Badge */
+.beta-badge {
+  display: inline-block;
+  padding: 0.3rem 0.8rem;
+  border: 1px solid var(--ifm-color-accent-cyan);
+  border-radius: 9999px; /* Pill shape */
+  color: var(--ifm-color-accent-cyan);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  margin-bottom: 1rem;
+  background-color: rgba(0, 217, 255, 0.05); /* Very subtle transparent bg */
+  transition: var(--ifm-transition-ease);
+  box-shadow: 0 0 5px rgba(0, 217, 255, 0.3); /* Initial subtle glow */
+}
+
+.beta-badge:hover {
+    box-shadow: var(--ifm-shadow-glow-cyan); /* Enhanced glow on hover */
+}
+
+/* Technology Badges */
+.tech-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 1.5rem;
+  justify-content: center;
+}
+@media (min-width: 996px) {
+  .tech-badges {
+    justify-content: flex-start;
+  }
+}
+
+.tech-badge {
+  display: inline-block;
+  padding: 0.4rem 1rem;
+  background-color: var(--ifm-color-secondary-background);
+  border-radius: 9999px;
+  color: var(--ifm-text-color-white);
+  font-size: 0.9rem;
+  font-weight: 500;
+  box-shadow: var(--ifm-shadow-glass); /* Glassmorphism effect */
+  border: 1px solid rgba(0, 217, 255, 0.1);
+  transition: var(--ifm-transition-ease);
+}
+
+.tech-badge:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--ifm-shadow-glow-cyan);
+}
+
+/* Hero Buttons */
+.hero .button {
+  border-radius: 9999px; /* Pill shape */
+  font-size: 1.1rem;
+  padding: 0.8rem 2rem;
+  margin: 0.5rem;
+  font-weight: 700;
+  transition: var(--ifm-transition-ease);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+.hero .button--primary {
+  background: linear-gradient(90deg, #00d9ff 0%, #00a8cc 100%); /* Cyan gradient */
+  color: var(--ifm-color-primary-background); /* Dark text on light button */
+  border: none;
+}
+
+.hero .button--primary:hover {
+  box-shadow: var(--ifm-shadow-glow-cyan);
+  transform: translateY(-2px) scale(1.02);
+  background: linear-gradient(90deg, #00eaff 0%, #00b8dd 100%);
+}
+
+.hero .button--outline {
+  background-color: transparent;
+  color: var(--ifm-color-accent-cyan);
+  border: 2px solid var(--ifm-color-accent-cyan);
+}
+
+.hero .button--outline:hover {
+  background-color: rgba(0, 217, 255, 0.1);
+  box-shadow: var(--ifm-shadow-glow-cyan);
+  transform: translateY(-2px) scale(1.02);
+}
+
+/* Start a Journey */
+.start-journey {
+  margin-top: 3rem;
+  text-align: center;
+  color: var(--ifm-text-color-gray);
+  font-size: 0.9rem;
+  animation: bounce 2s infinite;
+}
+
+.start-journey .fas.fa-arrow-down { /* Assuming FontAwesome for icon */
+  display: block;
+  font-size: 1.5rem;
+  margin-top: 0.5rem;
+  color: var(--ifm-color-accent-cyan);
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-10px);
+  }
+  60% {
+    transform: translateY(-5px);
+  }
+}
+
+/* Hero Illustration */
+.hero-illustration {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  min-height: 200px;
+}
+
+.hero-illustration img {
+  max-width: 120%; /* Increased size */
+  height: auto;
+  filter: drop-shadow(0 10px 20px rgba(0, 217, 255, 0.2)); /* Subtle glow for illustration */
+}
+
+/* Footer (ensure it's dark) */
+.footer {
+  background-color: var(--ifm-color-primary-background); /* Use primary background for consistent dark footer */
+  border-top: 1px solid rgba(0, 217, 255, 0.1);
+  color: var(--ifm-text-color-gray);
+}
+
+.footer__link-item {
+  color: var(--ifm-text-color-gray);
+}
+
+.footer__link-item:hover {
+  color: var(--ifm-color-accent-cyan);
+}
+
+/* General improvements for readability and contrast */
+p, li {
+  color: var(--ifm-text-color-gray);
+}
+
+/* Remove default card styles from HomepageFeatures if they were there */
+.features {
+    display: none; /* Hide the entire features section */
+}
+
