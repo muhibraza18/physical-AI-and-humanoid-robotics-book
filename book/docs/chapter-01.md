@@ -1,7 +1,7 @@
 ---
 id: chapter-01
 title: "Introduction to Physical AI and Embodied Intelligence"
-slug: /chapter-1
+slug: /chapter-01
 ---
 
 # Chapter 1: Introduction to Physical AI and Embodied Intelligence
