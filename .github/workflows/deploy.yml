@@ -3,8 +3,8 @@ name: Deploy Docusaurus to GitHub Pages
 on:
   push:
     branches:
-      - main  # Changed from master to main
-  workflow_dispatch:  # Added: allows manual trigger
+      - main
+  workflow_dispatch:
 
 jobs:
   deploy:
@@ -17,7 +17,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '18'
+          node-version: '20'  # Changed from '18' to '20'
           cache: npm
           
       - name: Install dependencies
