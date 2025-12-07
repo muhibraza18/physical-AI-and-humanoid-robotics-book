@@ -44,6 +44,9 @@ const config = {
       ({
         docs: {
           sidebarPath: './sidebars.js',
+          routeBasePath: '/docs', // Ensure docs are served from /docs
+          include: ['**/*.md', '!**/chapter-template.md'],
+          exclude: ['**/_category_.json', '**/tutorial-basics/**', '**/tutorial-extras/**', '**/markdown-page.md', '**/intro.md', '**/latex-template.md'],
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
         },

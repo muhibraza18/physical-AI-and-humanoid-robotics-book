@@ -30,7 +30,7 @@ function HomepageHero() {
           <div className={styles.buttons}>
             <Link
               className="button button--primary button--lg glow-effect"
-              to="/docs/chapter-1">
+              to="/docs/chapter-01">
               Start Learning →
             </Link>
             <Link
