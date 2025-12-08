@@ -1,0 +1,18 @@
+fastapi
+uvicorn
+pydantic
+python-multipart
+qdrant-client
+openai
+tenacity
+# Database
+sqlalchemy[asyncio]
+asyncpg
+
+# Development/Testing
+alembic
+python-dotenv
+# For ingestion scripts (if run via backend)
+markdown-it-py
+python-slugify
+pypdf

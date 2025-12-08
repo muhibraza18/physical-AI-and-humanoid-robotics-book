@@ -37,3 +37,21 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./build
           publish_branch: gh-pages
+
+  # Placeholder for FastAPI Backend Deployment
+  # This would typically be a separate job or additional steps
+  # in the existing job, depending on backend hosting.
+  # For Vercel, this might involve configuring a vercel.json in the root
+  # to detect the rag-backend/ directory as a separate project.
+  # deploy-backend:
+  #   name: Deploy FastAPI Backend
+  #   runs-on: ubuntu-latest
+  #   needs: deploy # Assuming it deploys after frontend
+  #   steps:
+  #     - name: Checkout repository
+  #       uses: actions/checkout@v3
+  #     - name: Deploy to Vercel (or other platform)
+  #       run: |
+  #         # Commands to deploy your FastAPI backend
+  #         # e.g., if using Vercel CLI: vercel deploy --prebuilt --prod
+  #         echo "FastAPI backend deployment steps go here"

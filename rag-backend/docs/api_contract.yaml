@@ -1,0 +1,121 @@
+openapi: 3.0.0
+info:
+  title: RAG Chatbot API
+  version: 1.0.0
+  description: API for the Integrated RAG Chatbot System
+
+servers:
+  - url: http://localhost:8000
+    description: Local development server
+
+paths:
+  /chat:
+    post:
+      summary: Send a chat query to the RAG chatbot
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                query:
+                  type: string
+                  description: The user's chat query.
+      responses:
+        '200':
+          description: Successful response from the chatbot.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  answer:
+                    type: string
+                    description: The chatbot's response.
+                  evidence:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        source:
+                          type: string
+                          description: The source of the evidence (e.g., chapter-01).
+                        text:
+                          type: string
+                          description: The retrieved text snippet.
+        '400':
+          description: Invalid request.
+
+  /select-and-ask:
+    post:
+      summary: Ask a question about selected text
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                selected_text:
+                  type: string
+                  description: The text selected by the user.
+                query:
+                  type: string
+                  description: The user's question about the selected text.
+      responses:
+        '200':
+          description: Successful response from the chatbot.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  answer:
+                    type: string
+                    description: The chatbot's response.
+                  evidence:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        source:
+                          type: string
+                          description: The source of the evidence (e.g., chapter-01).
+                        text:
+                          type: string
+                          description: The retrieved text snippet.
+        '400':
+          description: Invalid request.
+
+  /ingest:
+    post:
+      summary: Ingest book content chunks into the vector database
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                chunks:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                      content:
+                        type: string
+                      metadata:
+                        type: object
+                        properties:
+                          source_chapter:
+                            type: string
+                          source_section:
+                            type: string
+      responses:
+        '200':
+          description: Ingestion successful.
+        '400':
+          description: Invalid ingestion data.
