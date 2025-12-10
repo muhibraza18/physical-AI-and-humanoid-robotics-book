@@ -1,20 +1,24 @@
 import os
 import glob
 import asyncio
+import sys # Import sys
 from typing import List, Dict, Optional
 from datetime import datetime
-from dotenv import load_dotenv # For loading local .env file
+from dotenv import load_dotenv
 
-from rag_ingestion.scripts.parse_content import parse_markdown_to_chunks
-from rag_backend.app.core.embedding_client import generate_embeddings_for_chunks
-from rag_ingestion.scripts.ingest_to_qdrant import ingest_chunks_to_qdrant
-from rag_backend.app.core.database import engine, AsyncSessionLocal, get_db # Import database components
-from rag_backend.app.models.db_models import IngestionRecord
-from rag_backend.app.services.ingestion_service import IngestionService
-from qdrant_client import QdrantClient # For checking Qdrant client directly
+# Add project root to sys.path for absolute imports
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..')))
 
 # Load environment variables from .env file for local development
 load_dotenv()
+
+from rag_ingestion.scripts.parse_content import parse_markdown_to_chunks
+from rag_backend.app.core.embedding_client import generate_embeddings_for_chunks
+from rag_ingestion.scripts.ingest_to_qdrant import ingest_chunks_to_qdrant # Keep this for now
+from rag_backend.app.core.database import AsyncSessionLocal # Import AsyncSessionLocal for session management
+from rag_backend.app.models.db_models import IngestionRecord
+from rag_backend.app.services.ingestion_service import IngestionService
+from qdrant_client import QdrantClient # For checking Qdrant client directly
 
 async def run_initial_ingestion(book_docs_path: str, qdrant_collection_name: str, session: AsyncSession):
     """
