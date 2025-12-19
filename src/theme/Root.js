@@ -1,12 +1,13 @@
 import React from 'react';
-import Chatbot from '@site/src/components/Chatbot'; // Import the Chatbot
+// import ChatbotUI from '@site/src/components/ChatbotUI';
+import ChatbotUI from '@site/src/components/Chatbot';
 
 // Default implementation, that you can customize
 export default function Root({children}) {
   return (
     <>
       {children}
-      <Chatbot /> {/* Add the Chatbot component here */}
+      <ChatbotUI /> {/* Add the Chatbot component here */}
     </>
   );
 }

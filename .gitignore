@@ -6,11 +6,8 @@ build/
 .docusaurus/
 .cache/
 yarn-error.log
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
-.env*.local
+package-lock.json
+yarn.lock
 
 # Python
 __pycache__/
@@ -21,16 +18,25 @@ dist/
 *.egg-info/
 .pytest_cache/
 .mypy_cache/
+uv.lock
+
+# Environment Variables / Secrets
+*.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+.env*.local
 
 # General
 .DS_Store
 Thumbs.db
-*.log
+*.log*
 *.tmp
 *.swp
 .vscode/
 .idea/
 .geminiignore
 
-# Docker (placeholder)
+# Docker
 .dockerignore

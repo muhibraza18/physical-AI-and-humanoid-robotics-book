@@ -35,7 +35,7 @@ function HomepageHero() {
             </Link>
             <Link
               className="button button--outline button--lg glow-effect"
-              href="https://github.com/physical-ai-humanoid-robotics">
+              href="https://github.com/muhibraza18/physical-ai-and-humanoid-robotics-book">
               GitHub Repo
             </Link>
           </div>

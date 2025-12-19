@@ -1,28 +1,14 @@
-import os
-from dotenv import load_dotenv
 import cohere
 from qdrant_client import QdrantClient
 
-# Load environment variables
-load_dotenv()
+# Initialize Cohere client
+cohere_client = cohere.Client("QqHPH4IvJOEym6X7jQ2gCtOBwpbAs28QzArlzcU0")
 
-# Initialize clients
-try:
-    cohere_api_key = os.getenv("COHERE_API_KEY")
-    qdrant_url = os.getenv("QDRANT_URL")
-    qdrant_api_key = os.getenv("QDRANT_API_KEY")
-
-    if not all([cohere_api_key, qdrant_url, qdrant_api_key]):
-        raise ValueError("One or more environment variables are not set.")
-
-    cohere_client = cohere.Client(cohere_api_key)
-    qdrant = QdrantClient(url=qdrant_url, api_key=qdrant_api_key)
-
-except (ValueError, Exception) as e:
-    # Handle initialization errors
-    print(f"Error during client initialization: {e}")
-    cohere_client = None
-    qdrant = None
+# Connect to Qdrant
+qdrant = QdrantClient(
+    url="https://a6ae135d-580b-4a28-9803-0adb84ab9d55.us-east4-0.gcp.cloud.qdrant.io",
+    api_key="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY2Nlc3MiOiJtIn0.Ve7ohi2ESSOOUBF6QFNv-YiZKQeOfQ5d_B5b3PG7ptM" 
+)
 
 def get_embedding(text):
     """Get embedding vector from Cohere Embed v3"""

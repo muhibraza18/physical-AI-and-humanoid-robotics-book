@@ -83,7 +83,7 @@ const config = {
             label: 'Chapters', // Changed label to Chapters
           },
           {
-            href: 'https://github.com/physical-ai-humanoid-robotics',
+            href: 'https://github.com/muhibraza18/physical-ai-and-humanoid-robotics-book',
             label: 'GitHub',
             position: 'right',
           },
@@ -107,7 +107,7 @@ const config = {
             items: [
               {
                 label: 'GitHub',
-                href: 'https://github.com/physical-ai-humanoid-robotics',
+                href: 'https://github.com/muhibraza18/physical-ai-and-humanoid-robotics-book',
               },
             ],
           },

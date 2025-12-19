@@ -51,7 +51,7 @@ This constitution defines mandatory rules that govern all future writing, planni
 
 ## New Requirement: Integrated RAG Chatbot System
 A Retrieval-Augmented Generation (RAG) chatbot MUST be developed, integrated, and embedded into the published Docusaurus site. This system must:
-- Use OpenAI Agents and/or ChatKit SDKs
+- Use compatible LLM agent implementations (e.g., Google Gemini API, OpenAI Agents, or ChatKit SDKs)
 - Use FastAPI for backend orchestration
 - Use Qdrant Cloud Free Tier as the vector database
 - Provide document-grounded answers based only on book content

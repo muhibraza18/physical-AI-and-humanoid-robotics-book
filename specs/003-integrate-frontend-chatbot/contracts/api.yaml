@@ -1,0 +1,202 @@
+openapi: 3.0.0
+info:
+  title: RAG Chatbot API
+  version: 1.0.0
+paths:
+  /embed:
+    post:
+      summary: Embed and store book content chunks
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - content
+                - metadata
+              properties:
+                content:
+                  type: string
+                  description: The text content to embed.
+                metadata:
+                  type: object
+                  description: Metadata associated with the content chunk.
+                  properties:
+                    file_path:
+                      type: string
+                    chapter:
+                      type: string
+                    section:
+                      type: string
+                    page_number:
+                      type: integer
+                      nullable: true
+                    chapter_id:
+                      type: string
+                      nullable: true
+      responses:
+        '200':
+          description: Content embedded and stored successfully.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: success
+                  message:
+                    type: string
+                    example: Content embedded and stored
+        '400':
+          description: Invalid input provided.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  detail:
+                    type: string
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  detail:
+                    type: string
+
+  /search:
+    post:
+      summary: Retrieve relevant book content chunks based on a query
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - query
+              properties:
+                query:
+                  type: string
+                  description: The user's search query.
+                top_k:
+                  type: integer
+                  description: Number of top relevant chunks to retrieve.
+                  default: 5
+      responses:
+        '200':
+          description: Retrieved content chunks.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  results:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        text:
+                          type: string
+                        metadata:
+                          type: object
+                          properties:
+                            file_path:
+                              type: string
+                            chapter:
+                              type: string
+                            section:
+                              type: string
+                            page_number:
+                              type: integer
+                              nullable: true
+                            chapter_id:
+                              type: string
+                              nullable: true
+        '400':
+          description: Invalid input provided.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  detail:
+                    type: string
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  detail:
+                    type: string
+
+  /chat:
+    post:
+      summary: Get a RAG-generated response to a user query
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - query
+              properties:
+                query:
+                  type: string
+                  description: The user's question.
+                selected_text:
+                  type: string
+                  nullable: true
+                  description: Optional text selected by the user for contextual answering.
+      responses:
+        '200':
+          description: RAG-generated answer and source references.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  answer:
+                    type: string
+                  source_references:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        file_path:
+                          type: string
+                        chapter:
+                          type: string
+                        section:
+                          type: string
+                        page_number:
+                          type: integer
+                          nullable: true
+                        chapter_id:
+                          type: string
+                          nullable: true
+        '400':
+          description: Invalid input provided.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  detail:
+                    type: string
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  detail:
+                    type: string

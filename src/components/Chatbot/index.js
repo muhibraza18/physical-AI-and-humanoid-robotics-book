@@ -39,7 +39,8 @@ const Chatbot = () => {
     setIsLoading(true);
 
     try {
-      const response = await ChatService.sendMessage(query, chatMode === 'selection' ? selectedText : null);
+      // const response = await ChatService.sendMessage(query, chatMode === 'selection' ? selectedText : null);
+      const response = await ChatService.sendMessage(query, selectedText);
       setMessages((prev) => [...prev, { type: 'bot', text: response.answer, evidence: response.evidence }]);
     } catch (error) {
       setMessages((prev) => [...prev, { type: 'bot', text: `Error: ${error.message}` }]);

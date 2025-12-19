@@ -1,39 +1,28 @@
-import os
-from dotenv import load_dotenv
 from agents import Agent, Runner, OpenAIChatCompletionsModel, AsyncOpenAI
 from agents import function_tool
+
+# Retrieve API keys and URLs from environment variables
+
+provider = AsyncOpenAI(
+    api_key = "AIzaSyAx4QjjFARqHJlnL4-Tcy8qhxJq_xBy6dQ", # Use env var
+    base_url="https://generativelanguage.googleapis.com/v1beta/openai/"
+)
+
+model = OpenAIChatCompletionsModel(
+    model="gemini-2.5-flash",
+    openai_client=provider
+)
+
 import cohere
 from qdrant_client import QdrantClient
 
-# Load environment variables
-load_dotenv()
-
-# Initialize clients
-try:
-    groq_api_key = os.getenv("GROQ_API_KEY")
-    cohere_api_key = os.getenv("COHERE_API_KEY")
-    qdrant_url = os.getenv("QDRANT_URL")
-    qdrant_api_key = os.getenv("QDRANT_API_KEY")
-
-    if not all([groq_api_key, cohere_api_key, qdrant_url, qdrant_api_key]):
-        raise ValueError("One or more environment variables are not set.")
-
-    provider = AsyncOpenAI(api_key=groq_api_key, base_url="https://api.groq.com/openai/v1")
-    model = OpenAIChatCompletionsModel(model="llama-3.3-70b-versatile", openai_client=provider)
-    cohere_client = cohere.Client(cohere_api_key)
-    qdrant = QdrantClient(url=qdrant_url, api_key=qdrant_api_key)
-
-except (ValueError, Exception) as e:
-    # Handle initialization errors
-    print(f"Error during client initialization: {e}")
-    # You might want to exit or handle this more gracefully
-    # For now, we'll let it proceed but endpoints will likely fail
-    provider = None
-    model = None
-    cohere_client = None
-    qdrant = None
-
-
+# Initialize Cohere client
+cohere_client = cohere.Client("QqHPH4IvJOEym6X7jQ2gCtOBwpbAs28QzArlzcU0") # Use env var
+# Connect to Qdrant
+qdrant = QdrantClient(
+    url="https://a6ae135d-580b-4a28-9803-0adb84ab9d55.us-east4-0.gcp.cloud.qdrant.io",
+    api_key="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY2Nlc3MiOiJtIn0.Ve7ohi2ESSOOUBF6QFNv-YiZKQeOfQ5d_B5b3PG7ptM" 
+)
 
 def get_embedding(text):
     """Get embedding vector from Cohere Embed v3"""
@@ -56,7 +45,6 @@ def retrieve(query):
     return [point.payload["text"] for point in result.points]
 
 
-
 agent = Agent(
     name="Assistant",
     instructions="""
@@ -68,11 +56,3 @@ If the answer is not in the retrieved content, say "I don't know".
     model=model,
     tools=[retrieve]
 )
-
-
-result = Runner.run_sync(
-    agent,
-    input="what is physical ai?",
-)
-
-print(result.final_output)
